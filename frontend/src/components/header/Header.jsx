@@ -3,14 +3,13 @@ import "./header.css";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Header() {
     return (
         <div>
             <Navbar expand="lg" className="navbar bg-light navbar-light">
                 <Container>
-                    <Navbar.Brand href="#home">Product Inventory</Navbar.Brand>
+                    <Navbar.Brand href="#home" className='name'>Product Inventory</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">

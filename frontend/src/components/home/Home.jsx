@@ -1,10 +1,10 @@
-import React from 'react';
-import "./home.css";
+import React from 'react'
+import "./home.css"
 
 function Home() {
   return (
-    <div className='home-container my-4'>
-        <h2>Welcome to Product Inventory</h2><br/>
+    <div className='home-container'>
+        <h5>Welcome To Product Inventory</h5>
         <p>This is my Home Component</p>
     </div>
   )
