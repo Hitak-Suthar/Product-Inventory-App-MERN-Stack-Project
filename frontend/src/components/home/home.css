@@ -1,0 +1,10 @@
+.home-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    flex-direction: column;
+    background: #000;
+    color: #fff;
+    border-radius: 50px;
+}
