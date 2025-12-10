@@ -1,22 +1,37 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './components/Home';
+import Cards from './components/Cards';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'
-import Header from './components/header/Header';
-import Home from './components/home/Home';
-import Footer from './components/footer/Footer';
-import Cards from './components/cards/Cards';
+import './index.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [mode, setMode] = useState("light");
+
+  const changeMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+      document.body.style.backgroundColor = "#042f55";
+    } else {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+    }
+  };
+
+  useEffect(() => {
+    document.body.style.backgroundColor = mode === "dark" ? "#042f55" : "white";
+  }, [mode]);
+
 
   return (
-    <div>
-      <Header/>
+    <>
+      <Navbar mode={mode} changeMode={changeMode} />
       <Home/>
-      <Cards title1="Product 1" title2="Product 2" title3="Product 3"/>
-      <Footer/>
-    </div>
-  )
-}
+      <Cards />
+      <Footer />
+    </>
+  );
+};
 
-export default App
+export default App;
