@@ -2,8 +2,8 @@ import React from 'react';
 
 const Home = ({setPage}) => {
   return (
-    <div className="container" style={{margin:"8rem auto"}}>
-      <div className="card shadow p-4">
+    <div className="container" style={{margin:"8rem auto",height:"45.97vh",overflow:"hidden"}}>
+      <div className="card shadow p-4" style={{border:"3px solid black",borderRadius:"20px"}}>
         <h2 className="text-center mb-3 text-primary">Welcome to Product Inventory</h2>
         <p className="lead text-center">Manage your products effortlessly with our easy-to-use inventory system.
           Track stock levels, mark items as sold or restocked, and stay organized with real-time updates.
@@ -11,7 +11,7 @@ const Home = ({setPage}) => {
           for smooth and efficient inventory management.</p>
       </div>
       <div className="d-flex justify-content-center my-4">
-         <button className="btn btn-primary" style={{width:"14vw", height:"8vh", fontSize:"1.5rem"}} onClick={() => {
+         <button className="btn btn-primary" style={{width:"14vw", height:"7vh", fontSize:"1.5rem",border:"1px solid black",borderRadius:"10px"}} onClick={() => {
           alert("Please login first to access the Products page"),setPage('login')}}>Products</button>
       </div>
      

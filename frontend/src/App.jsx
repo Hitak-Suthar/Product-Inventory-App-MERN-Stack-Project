@@ -6,6 +6,8 @@ import Login from './components/Login';
 import Products from "./components/Products"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import About from './components/About';
+import NewProducts from './components/NewProducts';
 
 const App = () => {
   const [page, setPage] = useState('home');
@@ -16,14 +18,16 @@ const App = () => {
     switch(page) {
       case 'home': return <Home setPage={setPage} />;
       case 'about': return <About />;
-      case 'products': return <Products />;
-      case 'login': return <Login />;
+      case 'products': return <Products mode={mode} />;
+      case 'login': return <Login setPage={setPage} />;
+      case "about" : return <About/>
+      case "newProducts" : return <NewProducts/>;
       default: return <Home />;
     }
   };
 
   const changeMode = () => {
-    if (mode === "light") {
+    if (mode == "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#042f55";
     } else {
@@ -33,7 +37,7 @@ const App = () => {
   };
 
    useEffect(() => {
-    if(page === "products") {
+    if(page == "products") {
       setShowFooter(false);
     } else {
       setShowFooter(true);
