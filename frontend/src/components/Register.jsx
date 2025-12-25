@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Register({ setPage}) {
+function Register({ setPage }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,29 +12,29 @@ function Register({ setPage}) {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_URL}/api/users/register`, {
+      const res = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
       });
 
       if (!res.ok) {
-        const errorText = await res.text(); // Get raw response
-        console.error("Registration failed - Status:", res.status, "Response:", errorText);
-        throw new Error(`Registration failed: ${res.status} - ${errorText}`);
+        const errorText = await res.text();
+        throw new Error(errorText || `HTTP ${res.status}`);
       }
 
       const data = await res.json();
       console.log("Registration success:", data);
-      // Handle success (e.g., store token if auto-login, redirect)
       alert("Registration successful!");
+      setPage("login"); // optional
     } catch (error) {
-      console.error("Error registering:", error);
-      alert(`Something went wrong: ${error.message}`); // Update your alert to show details
+      console.error("Error registering:", error.message);
+      alert(error.message);
     }
 
     setLoading(false);
   };
+
 
   return (
     <div className="container mt-4">
