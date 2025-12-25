@@ -11,6 +11,10 @@ function Products({ mode }) {
   const [editingId, setEditingId] = useState(null);
   const textColor = mode === "dark" ? "white" : "black";
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
+
+
   const token = localStorage.getItem('token');
 
   const increment = () => setQuantity(quantity + 1);
@@ -40,7 +44,7 @@ function Products({ mode }) {
       return;
     }
     try {
-      const response = await fetch("https://product-inventory-app-mern-stack-project.onrender.com/api/products", {
+      const response = await fetch(`${API_URL}/api/products`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -73,7 +77,7 @@ function Products({ mode }) {
       let response;
       if (editingId) {
 
-        response = await fetch(`https://product-inventory-app-mern-stack-project.onrender.com/api/products/${editingId}`, {
+        response = await fetch(`${API_URL}/api/products/${editingId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -84,7 +88,7 @@ function Products({ mode }) {
         if (response.ok) alert("Updated Successfully");
       } else {
 
-        response = await fetch("https://product-inventory-app-mern-stack-project.onrender.com/api/products", {
+        response = await fetch(`${API_URL}/api/products`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -112,7 +116,7 @@ function Products({ mode }) {
       return;
     }
     try {
-      const response = await fetch(`https://product-inventory-app-mern-stack-project.onrender.com/api/products/${id}`, {
+      const response = await fetch(`${API_URL}/api/products/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -169,7 +173,7 @@ function Products({ mode }) {
       return;
     }
     try {
-      const response = await fetch("https://product-inventory-app-mern-stack-project.onrender.com", {
+      const response = await fetch(`${API_URL}/api/products/all`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
