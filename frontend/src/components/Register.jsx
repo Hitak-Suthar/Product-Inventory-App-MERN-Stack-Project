@@ -13,22 +13,23 @@ function Register({ setPage }) {
     try {
       const res = await fetch(`${API_URL}/api/users/register`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        alert("Registered successfully, Now Login to your account");
-        setPage("login");
-      } else {
-        alert(data.message);
+      if (!res.ok) {
+        const errorText = await res.text(); // Get raw response
+        console.error("Registration failed - Status:", res.status, "Response:", errorText);
+        throw new Error(`Registration failed: ${res.status} - ${errorText}`);
       }
+
+      const data = await res.json();
+      console.log("Registration success:", data);
+      // Handle success (e.g., store token if auto-login, redirect)
+      alert("Registration successful!");
     } catch (error) {
-      alert("Something went wrong");
+      console.error("Error registering:", error);
+      alert(`Something went wrong: ${error.message}`); // Update your alert to show details
     }
 
     setLoading(false);
