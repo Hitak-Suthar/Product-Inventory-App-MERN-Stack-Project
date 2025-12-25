@@ -7,7 +7,8 @@ import Products from "./components/Products";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import About from './components/About';
-import NewProducts from './components/NewProducts';
+import Register from './components/Register';
+// import NewProducts from './components/NewProducts';
 
 const App = () => {
   const [page, setPage] = useState('home');  
@@ -16,34 +17,39 @@ const App = () => {
 
   
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      
-      setPage('products'); 
-    } else {
-      setPage('home');  
-    }
-  }, []);
+  const token = localStorage.getItem('token');
+
+  if (token) console.log("Token exists, user can access products after login");
+}, []);
 
   const renderPage = () => {
-    
-    if (page === 'products') {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        setPage('login');  
-        return <Login setPage={setPage} />;  
-      }
-    }
+  const token = localStorage.getItem("token");
 
-    switch (page) {
-      case 'home': return <Home setPage={setPage} />;
-      case 'about': return <About />;
-      case 'products': return <Products mode={mode} setPage={setPage} />;  
-      case 'login': return <Login setPage={setPage} />;
-      case 'newProducts': return <NewProducts />;
-      default: return <Home />;
-    }
-  };
+  switch (page) {
+    case "home":
+      return <Home setPage={setPage} />;
+
+    case "about":
+      return <About />;
+
+    case "products":
+      if (!token) {
+        return <Login setPage={setPage} />;
+      }
+      return <Products mode={mode} setPage={setPage} />;
+
+    case "login":
+      return <Login setPage={setPage} />;
+
+    case "register":
+      return <Register setPage={setPage} />;
+
+    default:
+      return <Home setPage={setPage} />;
+  }
+};
+
+
 
   const changeMode = () => {
     if (mode === "light") {

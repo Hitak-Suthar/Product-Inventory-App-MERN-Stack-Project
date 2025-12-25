@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const Login = ({ setPage }) => {
+const Login = ({ setPage}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,6 +60,10 @@ const Login = ({ setPage }) => {
         <button className="btn btn-primary" type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
+        <div className='d-flex'>
+        <p>New User ? :</p>
+        <button className='btn btn-link' style={{textDecoration:"none",marginTop:"-15px"}} onClick={() => setPage('register')}>Create new account</button>
+        </div>
       </form>
     </div>
   );

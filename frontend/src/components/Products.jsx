@@ -8,10 +8,10 @@ function Products({ mode }) {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
-  const [editingId, setEditingId] = useState(null); 
+  const [editingId, setEditingId] = useState(null);
   const textColor = mode === "dark" ? "white" : "black";
 
-  const token = localStorage.getItem('token'); 
+  const token = localStorage.getItem('token');
 
   const increment = () => setQuantity(quantity + 1);
   const decrement = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
@@ -72,7 +72,7 @@ function Products({ mode }) {
     try {
       let response;
       if (editingId) {
-        
+
         response = await fetch(`http://localhost:5000/api/products/${editingId}`, {
           method: "PUT",
           headers: {
@@ -83,7 +83,7 @@ function Products({ mode }) {
         });
         if (response.ok) alert("Updated Successfully");
       } else {
-      
+
         response = await fetch("http://localhost:5000/api/products", {
           method: "POST",
           headers: {
@@ -98,53 +98,53 @@ function Products({ mode }) {
       if (!response.ok) throw new Error("Failed to save product");
       resetForm();
       setShowForm(false);
-      fetchProducts(); 
+      fetchProducts();
     } catch (error) {
       console.error("Error saving product:", error);
       alert("Error saving product");
     }
   };
 
-  
-       const handleDelete = async (id) => {
-       if (!token) {
-         alert("Please log in first");
-         return;
-       }
-       try {
-         const response = await fetch(`http://localhost:5000/api/products/${id}`, {
-           method: "DELETE",
-           headers: {
-             Authorization: `Bearer ${token}`,
-           },
-         });
-         console.log("Delete response status:", response.status); 
-         console.log("Delete response ok:", response.ok);
-         
-         if (!response.ok) {
-           let errorMessage = `HTTP ${response.status}`;
-           try {
-             const errorData = await response.json();
-             errorMessage += `: ${errorData.message || 'Unknown error'}`;
-           } catch (jsonError) {
-            
-             const text = await response.text();
-             console.log("Raw response text:", text); 
-             errorMessage += `: ${text.substring(0, 200)}...`; 
-           }
-           throw new Error(errorMessage);
-         }
-         
-         alert("Product deleted");
-         fetchProducts(); 
-       } catch (error) {
-         console.error("Error deleting product:", error);
-         alert(`Error deleting product: ${error.message}`);
-       }
-     };
-     
 
-  
+  const handleDelete = async (id) => {
+    if (!token) {
+      alert("Please log in first");
+      return;
+    }
+    try {
+      const response = await fetch(`http://localhost:5000/api/products/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("Delete response status:", response.status);
+      console.log("Delete response ok:", response.ok);
+
+      if (!response.ok) {
+        let errorMessage = `HTTP ${response.status}`;
+        try {
+          const errorData = await response.json();
+          errorMessage += `: ${errorData.message || 'Unknown error'}`;
+        } catch (jsonError) {
+
+          const text = await response.text();
+          console.log("Raw response text:", text);
+          errorMessage += `: ${text.substring(0, 200)}...`;
+        }
+        throw new Error(errorMessage);
+      }
+
+      alert("Product deleted");
+      fetchProducts();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      alert(`Error deleting product: ${error.message}`);
+    }
+  };
+
+
+
   const handleUpdateClick = (product) => {
     setShowForm(true);
     setProductName(product.name);
@@ -152,43 +152,47 @@ function Products({ mode }) {
     setPrice(product.price);
     setQuantity(product.quantity);
     setDate(product.date);
-    setEditingId(product._id); 
+    setEditingId(product._id);
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+  if (!token) return;   
+  fetchProducts();
+}, [token]);
+
 
 
 
   const clearAll = async () => {
-  if (!token) {
-    alert("Please log in first");
-    return;
-  }
-  try {
-    const response = await fetch("http://localhost:5000/api/products/all", {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      const data = await response.json().catch(() => ({}));
-      throw new Error(data.message || `HTTP ${response.status}`);
+    if (!token) {
+      alert("Please log in first");
+      return;
     }
+    try {
+      const response = await fetch("http://localhost:5000/api/products/all", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    alert("All products deleted");
-    fetchProducts();
-  } catch (err) {
-    console.error("Error deleting all products:", err);
-    alert(`Error deleting all products: ${err.message}`);
-  }
-};
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.message || `HTTP ${response.status}`);
+      }
+
+      alert("All products deleted");
+      fetchProducts();
+    } catch (err) {
+      console.error("Error deleting all products:", err);
+      alert(`Error deleting all products: ${err.message}`);
+    }
+  };
 
 
-  
+
+
+
 
   return (
     <div style={{ display: "flex", overflow: "hidden" }}>
@@ -212,8 +216,8 @@ function Products({ mode }) {
             >
               Create new product
             </button>
-            <button className="btn btn-danger" style={{marginBottom:"20px", marginLeft:"15px"}} onClick={clearAll}>Clear All</button>
-          
+            <button className="btn btn-danger" style={{ marginBottom: "20px", marginLeft: "15px" }} onClick={clearAll}>Clear All</button>
+
           </div>
         </div>
 
@@ -316,11 +320,11 @@ function Products({ mode }) {
                 </label>
                 <div style={{ margin: "10px 0" }}>
                   <div className="right" style={{ margin: "10px 55px" }}>
-                    <button onClick={decrement} style={{ borderRadius: "5px" }}>
+                    <button type="button" onClick={decrement} style={{ borderRadius: "5px" }}>
                       -
                     </button>
                     <span style={{ margin: "0 10px" }}>{quantity}</span>
-                    <button onClick={increment} style={{ borderRadius: "5px" }}>
+                    <button type="button" onClick={increment} style={{ borderRadius: "5px" }}>
                       +
                     </button>
                   </div>
