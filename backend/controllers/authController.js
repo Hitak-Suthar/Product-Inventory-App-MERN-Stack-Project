@@ -10,7 +10,6 @@ async function registerUser(req, res) {
       return res.status(400).json({ message: "Please provide name, email and password" });
     }
 
-
     const existing = await User.findOne({ email: email.toLowerCase().trim() });
     if (existing) {
       return res.status(409).json({ message: "Email already in use" });
@@ -53,8 +52,8 @@ async function loginUser(req, res) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-  
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET || 'your_secret_key', { expiresIn: '1h' });
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'your_secret_key', { expiresIn: '1h' });
 
     const { password: _p, ...userData } = user.toObject();
     return res.status(200).json({ message: "Login successful", token, user: userData });
@@ -65,9 +64,3 @@ async function loginUser(req, res) {
 }
 
 module.exports = { registerUser, loginUser };
-
-
-
-
-
-

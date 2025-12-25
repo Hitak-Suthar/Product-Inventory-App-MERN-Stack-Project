@@ -1,8 +1,6 @@
 const Product = require("../models/Product");
 
 
-const ProductModel = require("../models/Product"); 
-
 const addProduct = async (req, res) => {
   try {
     const { name, category, price, quantity, date } = req.body;
@@ -11,17 +9,18 @@ const addProduct = async (req, res) => {
       return res.status(400).json({ message: "Product Name is required." });
     }
 
-    const newProduct = new ProductModel({
+    const newProduct = new Product({
       name,
       category,
       price,
       quantity,
       date,
-      createdBy: req.user._id 
+      createdBy: req.user._id,
     });
 
+
     const savedProduct = await newProduct.save();
-    res.status(201).json(savedProduct); 
+    res.status(201).json(savedProduct);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
@@ -31,7 +30,7 @@ const addProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
-    const Products = await Product.find({createdBy: req.user._id});
+    const Products = await Product.find({ createdBy: req.user._id });
     res.json(Products);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -55,7 +54,7 @@ const getProductById = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   try {
-    const updatedProduct = await ProductModel.findByIdAndUpdate(
+    const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -89,7 +88,7 @@ const deleteProduct = async (req, res) => {
 
 const deleteAllProducts = async (req, res) => {
   try {
-  
+
     const result = await Product.deleteMany({ createdBy: req.user._id });
     res.json({ message: `Deleted ${result.deletedCount} products` });
   } catch (err) {
