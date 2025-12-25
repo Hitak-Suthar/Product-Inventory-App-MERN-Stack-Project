@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Register({ setPage }) {
+function Register({ setPage, API_URL }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
