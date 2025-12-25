@@ -40,7 +40,7 @@ function Products({ mode }) {
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/api/products", {
+      const response = await fetch("https://product-inventory-app-mern-stack-project.onrender.com/api/products", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -73,7 +73,7 @@ function Products({ mode }) {
       let response;
       if (editingId) {
 
-        response = await fetch(`http://localhost:5000/api/products/${editingId}`, {
+        response = await fetch(`https://product-inventory-app-mern-stack-project.onrender.com/api/products/${editingId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -84,7 +84,7 @@ function Products({ mode }) {
         if (response.ok) alert("Updated Successfully");
       } else {
 
-        response = await fetch("http://localhost:5000/api/products", {
+        response = await fetch("https://product-inventory-app-mern-stack-project.onrender.com/api/products", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -112,7 +112,7 @@ function Products({ mode }) {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const response = await fetch(`https://product-inventory-app-mern-stack-project.onrender.com/api/products/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -169,7 +169,7 @@ function Products({ mode }) {
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/api/products/all", {
+      const response = await fetch("https://product-inventory-app-mern-stack-project.onrender.com", {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
