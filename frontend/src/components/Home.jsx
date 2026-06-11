@@ -63,7 +63,7 @@ const Home = ({ setPage }) => {
         <p
           className="text-center"
           style={{
-            fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
+            fontSize: "1.25rem",
             lineHeight: "2",
           }}
         >
