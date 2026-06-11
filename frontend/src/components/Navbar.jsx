@@ -37,16 +37,25 @@
 
 
 
-
-
 import React from 'react';
 
 const Navbar = ({ setPage, changeMode }) => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav
+      className="navbar navbar-expand-lg bg-body-tertiary py-3"
+      style={{
+        minHeight: "80px",
+      }}
+    >
       <div className="container-fluid">
 
-        <a className="navbar-brand" href="#">
+        <a
+          className="navbar-brand fw-bold"
+          href="#"
+          style={{
+            fontSize: "1.5rem",
+          }}
+        >
           Product Inventory
         </a>
 
@@ -62,12 +71,12 @@ const Navbar = ({ setPage, changeMode }) => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+        <div className="collapse navbar-collapse mt-3 mt-lg-0" id="navbarSupportedContent">
+          <ul className="navbar-nav ms-auto align-items-lg-center gap-lg-4">
 
             <li className="nav-item">
               <button
-                className="btn btn-link nav-link"
+                className="btn btn-link nav-link fs-5"
                 onClick={() => setPage('home')}
               >
                 Home
@@ -76,7 +85,7 @@ const Navbar = ({ setPage, changeMode }) => {
 
             <li className="nav-item">
               <button
-                className="btn btn-link nav-link"
+                className="btn btn-link nav-link fs-5"
                 onClick={() => setPage('about')}
               >
                 About
@@ -85,7 +94,7 @@ const Navbar = ({ setPage, changeMode }) => {
 
             <li className="nav-item">
               <button
-                className="btn btn-link nav-link"
+                className="btn btn-link nav-link fs-5"
                 onClick={() => {
                   alert("Please login first to access the Products page");
                   setPage('login');
@@ -95,25 +104,37 @@ const Navbar = ({ setPage, changeMode }) => {
               </button>
             </li>
 
-            <li className="nav-item mt-2 mt-lg-0">
+            <li className="nav-item mt-3 mt-lg-0">
               <button
-                className="btn btn-primary"
+                className="btn btn-primary px-4 py-2"
+                style={{
+                  fontSize: "1.1rem",
+                }}
                 onClick={() => setPage('login')}
               >
                 Login
               </button>
             </li>
 
-            <li className="nav-item mt-2 mt-lg-0">
-              <div className="form-check form-switch">
+            <li className="nav-item mt-3 mt-lg-0">
+              <div
+                className="form-check form-switch"
+                style={{
+                  fontSize: "1.1rem",
+                }}
+              >
                 <input
                   className="form-check-input"
                   type="checkbox"
                   id="customSwitch"
                   onChange={changeMode}
+                  style={{
+                    transform: "scale(1.4)",
+                    cursor: "pointer",
+                  }}
                 />
                 <label
-                  className="form-check-label"
+                  className="form-check-label ms-2"
                   htmlFor="customSwitch"
                 >
                   Change Mode
