@@ -28,28 +28,32 @@
 
 
 
+
+
+
 import React from 'react';
 
 const Home = ({ setPage }) => {
   return (
     <div
-      className="container py-4 py-md-5"
+      className="container d-flex flex-column justify-content-center"
       style={{
-        maxWidth: "900px",
-        minHeight: "70vh",
+        minHeight: "85vh",
       }}
     >
       <div
-        className="card shadow p-3 p-md-5"
+        className="card shadow"
         style={{
           border: "3px solid black",
           borderRadius: "20px",
+          padding: "2rem",
+          minHeight: "55vh",
         }}
       >
         <h2
-          className="text-center text-primary mb-3"
+          className="text-center text-primary mb-4"
           style={{
-            fontSize: "clamp(1.6rem, 4vw, 2.8rem)",
+            fontSize: "clamp(2rem, 5vw, 3rem)",
             fontWeight: "bold",
           }}
         >
@@ -57,10 +61,10 @@ const Home = ({ setPage }) => {
         </h2>
 
         <p
-          className="text-center mb-0"
+          className="text-center"
           style={{
-            fontSize: "clamp(1rem, 2vw, 1.25rem)",
-            lineHeight: "1.8",
+            fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
+            lineHeight: "2",
           }}
         >
           Manage your products effortlessly with our easy-to-use inventory
@@ -75,10 +79,10 @@ const Home = ({ setPage }) => {
         <button
           className="btn btn-primary"
           style={{
-            width: "100%",
-            maxWidth: "250px",
-            height: "50px",
-            fontSize: "1rem",
+            width: "90%",
+            maxWidth: "300px",
+            height: "60px",
+            fontSize: "1.2rem",
             border: "1px solid black",
             borderRadius: "10px",
           }}
