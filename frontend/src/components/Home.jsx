@@ -14,7 +14,7 @@
 //          <button className="btn btn-primary" style={{width:"14vw", height:"7vh", fontSize:"1.5rem",border:"1px solid black",borderRadius:"10px"}} onClick={() => {
 //           alert("Please login first to access the Products page"),setPage('login')}}>Products</button>
 //       </div>
-     
+
 //     </div>
 
 
@@ -33,37 +33,51 @@ import React from 'react';
 const Home = ({ setPage }) => {
   return (
     <div
-      className="container"
+      className="container py-4 py-md-5"
       style={{
-        margin: "4rem auto",
-        minHeight: "60vh",
+        maxWidth: "900px",
+        minHeight: "70vh",
       }}
     >
       <div
-        className="card shadow p-3 p-md-4"
+        className="card shadow p-3 p-md-5"
         style={{
           border: "3px solid black",
           borderRadius: "20px",
         }}
       >
-        <h2 className="text-center mb-3 text-primary">
+        <h2
+          className="text-center text-primary mb-3"
+          style={{
+            fontSize: "clamp(1.6rem, 4vw, 2.8rem)",
+            fontWeight: "bold",
+          }}
+        >
           Welcome to Product Inventory
         </h2>
 
-        <p className="lead text-center">
+        <p
+          className="text-center mb-0"
+          style={{
+            fontSize: "clamp(1rem, 2vw, 1.25rem)",
+            lineHeight: "1.8",
+          }}
+        >
           Manage your products effortlessly with our easy-to-use inventory
           system. Track stock levels, mark items as sold or restocked, and stay
-          organized with real-time updates. Perfect for small businesses, shops,
-          or personal collections, this app keeps everything in one place for
-          smooth and efficient inventory management.
+          organized with real-time updates. Perfect for small businesses,
+          shops, or personal collections, this app keeps everything in one
+          place for smooth and efficient inventory management.
         </p>
       </div>
 
-      <div className="d-flex justify-content-center my-4">
+      <div className="d-flex justify-content-center mt-4">
         <button
-          className="btn btn-primary px-4 py-2"
+          className="btn btn-primary"
           style={{
-            minWidth: "180px",
+            width: "100%",
+            maxWidth: "250px",
+            height: "50px",
             fontSize: "1rem",
             border: "1px solid black",
             borderRadius: "10px",
